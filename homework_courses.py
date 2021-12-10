@@ -30,6 +30,24 @@ class Student:
     def __str__(self):
         return f'Имя: {self.name}\r\nФамилия: {self.surname}\r\nСредняя оценка за ДЗ: {self.overall_average_grade:.1f}\r\nКурсы в процессе изучения: {", ".join(self.courses_in_progress)}\r\nЗавершенные курсы: {", ".join(self.finished_courses)}'
 
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print('Not a Student!')
+            return
+        return self.overall_average_grade < other.overall_average_grade
+
+    def __eq__(self, other):
+        if not isinstance(other, Student):
+            print('Not a Student!')
+            return
+        return self.overall_average_grade == other.overall_average_grade
+
+    def __ge__(self, other):
+        if not isinstance(other, Student):
+            print('Not a Student!')
+            return
+        return self.overall_average_grade >= other.overall_average_grade
+
      
 class Mentor:
     def __init__(self, name, surname):
@@ -53,6 +71,23 @@ class Lecturer(Mentor):
     def __str__(self):
         return f'Имя: {self.name}\r\nФамилия: {self.surname}\r\nСредняя оценка за лекции: {self.overall_average_grade:.1f}'
 
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Not a Lecturer!')
+            return
+        return self.overall_average_grade < other.overall_average_grade
+
+    def __eq__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Not a Lecturer!')
+            return
+        return self.overall_average_grade == other.overall_average_grade
+
+    def __ge__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Not a Lecturer!')
+            return
+        return self.overall_average_grade >= other.overall_average_grade    
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
@@ -114,3 +149,12 @@ print(cool_reviewer)
 print(bad_reviewer)
 print(best_student)
 print(mid_student)
+
+# print(cool_lecturer < bad_reviewer)
+print(cool_lecturer < bad_lecturer)
+print(cool_lecturer != bad_lecturer)
+print(cool_lecturer <= bad_lecturer)
+
+print(best_student < bad_reviewer)
+print(best_student != mid_student)
+print(best_student <= mid_student)
